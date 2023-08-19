@@ -42,16 +42,24 @@ public class MovieService {
         return new ArrayList<>(movies.keySet());
     }
 
+    public void deleteAllDirectors() {
+        directors.keySet().forEach(this::deleteDirectorByName);
+    }
     public void deleteDirectorByName(String name) {
         if (directors.containsKey(name)) {
+            Director director = directors.get(name);
             List<String> moviesToDelete = directorToMovies.getOrDefault(name, new ArrayList<>());
-            moviesToDelete.forEach(movies::remove);
+
+            // Remove the movies first from the directorToMovies map
             directorToMovies.remove(name);
+
+            // Then remove the movies from the movies map
+            for (String movieName : moviesToDelete) {
+                movies.remove(movieName);
+            }
+
             directors.remove(name);
         }
     }
 
-    public void deleteAllDirectors() {
-        directors.keySet().forEach(this::deleteDirectorByName);
-    }
 }
