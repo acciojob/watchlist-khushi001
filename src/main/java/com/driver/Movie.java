@@ -1,3 +1,4 @@
+
 package com.driver;
 
 public class Movie {
@@ -6,6 +7,7 @@ public class Movie {
     private double imdbRating;
 
     public Movie() {
+        super();
     }
 
     public Movie(String name, int durationInMinutes, double imdbRating) {
@@ -38,5 +40,7 @@ public class Movie {
         this.imdbRating = imdbRating;
     }
 
-    // Getters and setters
+
+
+
 }

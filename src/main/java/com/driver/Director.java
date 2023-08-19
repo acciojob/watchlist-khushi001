@@ -38,5 +38,5 @@ public class Director {
         this.imdbRating = imdbRating;
     }
 
-    // Getters and setters
+
 }
