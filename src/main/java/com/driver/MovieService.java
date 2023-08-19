@@ -48,19 +48,29 @@ public class MovieService {
     public void deleteDirectorByName(String name) {
         if (directors.containsKey(name)) {
             Director director = directors.get(name);
-            List<String> moviesToDelete = new ArrayList<>(directorToMovies.getOrDefault(name, new ArrayList<>()));
+            List<String> moviesToDelete = directorToMovies.getOrDefault(name, new ArrayList<>());
 
             // Remove the movies first from the directorToMovies map
             directorToMovies.remove(name);
 
-            // Then remove the movies from the movies map
+            // Create a list to store the movies to remove from the movies map
+            List<String> moviesToRemove = new ArrayList<>();
+
+            // Add movies to the moviesToRemove list
             for (String movieName : moviesToDelete) {
+                moviesToRemove.add(movieName);
+            }
+
+            // Remove the movies from the movies map
+            for (String movieName : moviesToRemove) {
                 movies.remove(movieName);
             }
 
             directors.remove(name);
         }
     }
+
+
 
 
 }
